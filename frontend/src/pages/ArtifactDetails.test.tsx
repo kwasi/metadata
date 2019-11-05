@@ -97,7 +97,10 @@ describe('ArtifactDetails', () => {
   });
 
   it('Renders the Overview tab for an artifact', async () => {
-    mockGetArtifact.mockResolvedValue(fakeArtifactResponse);
+    mockGetArtifact.mockResolvedValue({
+      error: null,
+      response: fakeGetArtifactByIDResponse,
+    });
     tree = TestUtils.mountWithRouter(<ArtifactDetails {...generateProps()} />);
     tree.setState({
       selectedTab: ArtifactDetailsTab.OVERVIEW
@@ -110,7 +113,10 @@ describe('ArtifactDetails', () => {
   });
 
   it('Renders the Lineage Explorer tab for an artifact', async () => {
-    mockGetArtifact.mockResolvedValue(fakeArtifactResponse);
+    mockGetArtifact.mockResolvedValue({
+      error: null,
+      response: fakeGetArtifactByIDResponse,
+    });
     tree = TestUtils.mountWithRouter(<ArtifactDetails {...generateProps()} />);
     tree.setState({
       selectedTab: ArtifactDetailsTab.LINEAGE_EXPLORER
@@ -123,7 +129,10 @@ describe('ArtifactDetails', () => {
   });
 
   it('Renders the Deployments tab for an artifact', async () => {
-    mockGetArtifact.mockResolvedValue(fakeArtifactResponse);
+    mockGetArtifact.mockResolvedValue({
+      error: null,
+      response: fakeGetArtifactByIDResponse,
+    });
     tree = TestUtils.mountWithRouter(<ArtifactDetails {...generateProps()} />);
     tree.setState({
       selectedTab: ArtifactDetailsTab.DEPLOYMENTS
