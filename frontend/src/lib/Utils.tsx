@@ -64,6 +64,13 @@ export function titleCase(str: string): string {
     .join(' ');
 }
 
+/**
+ * Safely extracts the named property or custom property from the provided
+ * Artifact or Execution.
+ * @param resource
+ * @param propertyName
+ * @param fromCustomProperties
+ */
 export function getResourceProperty(resource: Artifact | Execution,
     propertyName: string, fromCustomProperties = false): string | number | null {
   const props = fromCustomProperties
