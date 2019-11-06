@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.11.0",
+    "@improbable-eng/grpc-web-node-http-transport": "^0.11.0",
     "@material-ui/core": "^3.7.1",
     "@material-ui/icons": "^3.0.1",
     "lodash": ">=4.17.11",
@@ -30,6 +31,7 @@
     "enzyme-to-json": "^3.3.5",
     "license-checker": "^25.0.1",
     "react-router-test-context": "^0.1.0",
+    "ts-node": "^8.4.1",
     "ts-protoc-gen": "^0.12.0",
     "typescript": "^3.4.5"
   },

@@ -58,7 +58,9 @@ function makePromiseApi<T, R>(apiMethod: MetadataApiMethod<T, R>): PromiseBasedM
   });
 }
 
-const metadataServiceClient = new MetadataStoreServiceClient('');
+// This should match package.json#.proxy. I'm manually setting it because scripts/index.ts won't
+// be run for an environemnt
+const metadataServiceClient = new MetadataStoreServiceClient('http://localhost:8080');
 
 // TODO: add all other api methods we need here.
 const metadataServicePromiseClient = {
@@ -68,6 +70,7 @@ const metadataServicePromiseClient = {
   getExecutionTypes: makePromiseApi(metadataServiceClient.getExecutionTypes.bind(metadataServiceClient)),
   getExecutions: makePromiseApi(metadataServiceClient.getExecutions.bind(metadataServiceClient)),
   getExecutionsByID: makePromiseApi(metadataServiceClient.getExecutionsByID.bind(metadataServiceClient)),
+  putArtifacts: makePromiseApi(metadataServiceClient.putArtifacts.bind(metadataServiceClient))
 };
 
 /**
@@ -83,16 +86,9 @@ export class Api {
    */
   public static getInstance(): Api {
     if (!Api.instance) {
-      const location = window.location;
-      let path = `${location.protocol}//${location.host}${location.pathname}`;
-      if (path.endsWith('/')) path = path.slice(0, path.length - 1);
-      Api.instance = new Api(path);
+      Api.instance = new Api();
     }
     return Api.instance;
-  }
-
-  private constructor(basePath: string) {
-    this.metadataServiceApi = new MetadataServiceApi({basePath});
   }
 
   get metadataService(): MetadataServiceApi {
