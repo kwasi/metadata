@@ -4,44 +4,143 @@ import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport"
 // Do this first, before you make any grpc requests!
 grpc.setDefaultTransport(NodeHttpTransport());
 
-import {PutArtifactsRequest} from '../src/generated/src/apis/metadata/metadata_store_service_pb';
-import {Api, ArtifactCustomProperties} from '../src/lib/Api';
-import {Artifact} from '../src/generated/src/apis/metadata/metadata_store_pb';
-import {stringValue} from '../src/TestUtils';
+import {
+  GetArtifactTypesRequest,
+  GetExecutionTypesRequest,
+  PutArtifactsRequest,
+  PutExecutionRequest,
+  PutExecutionTypeRequest
+} from '../src/generated/src/apis/metadata/metadata_store_service_pb';
+import {Api} from '../src/lib/Api';
+import {Artifact, Event, Execution, ExecutionType} from '../src/generated/src/apis/metadata/metadata_store_pb';
+import ArtifactAndEvent = PutExecutionRequest.ArtifactAndEvent;
+import {artifact1} from './data';
+import {ServiceError} from '../src/generated/src/apis/metadata/metadata_store_service_pb_service';
 
-// Use the api version because it has a a Promise client.
+// Default types:
+// artifacts:
+//   1: kubeflow.org/alpha/metrics
+//   2: kubeflow.org/alpha/data_set
+//   3: kubeflow.org/alpha/model
+// executions
+//   4: kubeflow.org/alpha/execution
+
+// Use the api version because it will give your promise versions of the APIs..
 const api = Api.getInstance();
 
 const stringify = (object: any) => {
   return JSON.stringify(object, null, 2)
 };
 
-const putArtifact = async (artifact: Artifact) => {
-  const request = new PutArtifactsRequest();
-  request.addArtifacts(artifact);
-  const {error, response} = await api.metadataStoreService.putArtifacts(request);
+interface ResultInfo {
+  error: ServiceError | null;
+  method: string;
+  request: any;
+  response: any;
+}
 
+const logResult = ({error, method, request, response}: ResultInfo) => {
   if (error) {
-    console.log(`Error in ml_metadata.PutArtifacts: ${error.message}`);
+    console.log(`Error in ml_metadata.${method}: ${error.message}`);
     console.log(`Request:\n${stringify(request.toObject())}`);
     return;
   }
 
   // @ts-ignore
-  console.log(`ml_metadata.PutArtifactsResponse:\n${stringify(response.toObject())}`);
+  console.log(`ml_metadata.${method}Response:\n${stringify(response.toObject())}`);
 };
 
-// Test model
-const artifact1 = new Artifact();
-artifact1.setId(1);
-artifact1.setTypeId(3);
-artifact1.setUri('gs://my-bucket/mnist');
-const artifact1PropertiesMap = artifact1.getPropertiesMap();
-artifact1PropertiesMap.set('name', stringValue('model'));
-// Don't include pipeline_name, we use it in tests, but it throws an error
-// artifact1PropertiesMap.set('pipeline_name', stringValue('pipeline-1'));
-artifact1PropertiesMap.set('version', stringValue('v0'));
-artifact1PropertiesMap.set('create_time', stringValue('2019-06-12T01:21:48.259263Z'));
-artifact1.getCustomPropertiesMap().set(ArtifactCustomProperties.WORKSPACE, stringValue('workspace-1'));
+const putArtifact = async (artifact: Artifact) => {
+  const request = new PutArtifactsRequest();
+  request.addArtifacts(artifact);
 
-putArtifact(artifact1);
+  const {error, response} = await api.metadataStoreService.putArtifacts(request);
+
+  logResult({
+    error,
+    method: "PutArtifacts",
+    request,
+    response,
+  });
+};
+
+const putExecution = async (execution: Execution) => {
+  const event = new Event();
+  event.setArtifactId(artifact1.getId() as number);
+
+  if (execution.hasId()) {
+    // Updating an existing execution
+    event.setExecutionId(execution.getId() as number);
+  }
+
+  // date "+%s" * 1000
+  event.setType(Event.Type.DECLARED_INPUT);
+  event.setMillisecondsSinceEpoch(1573077511000);
+
+  const artifactAndEvent = new ArtifactAndEvent();
+  artifactAndEvent.setArtifact(artifact1);
+  artifactAndEvent.setEvent(event);
+
+  const request = new PutExecutionRequest();
+  request.addArtifactEventPairs(artifactAndEvent);
+  request.setExecution(execution);
+
+  const {error, response} = await api.metadataStoreService.putExecution(request);
+
+  logResult({
+    error,
+    method: "PutExecution",
+    request,
+    response,
+  });
+};
+
+const putExecutionType = async (executionType: ExecutionType) => {
+  const request = new PutExecutionTypeRequest();
+  request.setExecutionType(executionType);
+
+  const {error, response} = await api.metadataStoreService.putExecutionType(request);
+
+  logResult({
+    error,
+    method: "PutExecutionType",
+    request,
+    response,
+  });
+};
+
+const getExecutionTypes = async () => {
+  const request = new GetExecutionTypesRequest();
+
+  const {error, response} = await api.metadataStoreService.getExecutionTypes(request);
+
+  logResult({
+    error,
+    method: "GetExecutionTypes",
+    request,
+    response,
+  });
+};
+
+const getArtifactTypes = async () => {
+  const request = new GetArtifactTypesRequest();
+
+  const {error, response} = await api.metadataStoreService.getArtifactTypes(request);
+
+  logResult({
+    error,
+    method: "GetArtifactTypes",
+    request,
+    response,
+  });
+};
+
+// @ts-ignore
+const methods = {
+  getArtifactTypes,
+  getExecutionTypes,
+  putArtifact,
+  putExecution,
+  putExecutionType,
+};
+

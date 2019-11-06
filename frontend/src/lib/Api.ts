@@ -70,7 +70,10 @@ const metadataServicePromiseClient = {
   getExecutionTypes: makePromiseApi(metadataServiceClient.getExecutionTypes.bind(metadataServiceClient)),
   getExecutions: makePromiseApi(metadataServiceClient.getExecutions.bind(metadataServiceClient)),
   getExecutionsByID: makePromiseApi(metadataServiceClient.getExecutionsByID.bind(metadataServiceClient)),
-  putArtifacts: makePromiseApi(metadataServiceClient.putArtifacts.bind(metadataServiceClient))
+  // Used by data scripts
+  putArtifacts: makePromiseApi(metadataServiceClient.putArtifacts.bind(metadataServiceClient)),
+  putExecution: makePromiseApi(metadataServiceClient.putExecution.bind(metadataServiceClient)),
+  putExecutionType: makePromiseApi(metadataServiceClient.putExecutionType.bind(metadataServiceClient))
 };
 
 /**

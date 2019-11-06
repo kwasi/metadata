@@ -9,7 +9,7 @@ files and `cURL`.
 * Port-forward to port 8080 in your cluster. (`npm run start:proxy` or however you see fit).
 * Run `edit_tsconfig.sh` (or execute the steps manually if you don't have `jq` and `sponge` ) to
   make `tsc` more amenable to usage of this script.
-* Edit `index.ts` to generate the `Artifact` you need.
+* A the bottom of the file, call `methods.<methodName>()`
 * Run the script
 
 ```
