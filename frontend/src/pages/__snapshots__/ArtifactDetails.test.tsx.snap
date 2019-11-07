@@ -1639,7 +1639,7 @@ exports[`ArtifactDetails Renders the Overview tab for an artifact 1`] = `
                   Array [
                     undefined,
                     undefined,
-                    "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                    "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                   ],
                 ],
                 Array [
@@ -1707,7 +1707,7 @@ exports[`ArtifactDetails Renders the Overview tab for an artifact 1`] = `
                     Array [
                       undefined,
                       undefined,
-                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                     ],
                   ],
                   Array [
@@ -1749,13 +1749,13 @@ exports[`ArtifactDetails Renders the Overview tab for an artifact 1`] = `
                     "value": Array [
                       undefined,
                       undefined,
-                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                     ],
                     "valueWrapper": Object {
                       "array": Array [
                         undefined,
                         undefined,
-                        "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                        "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                       ],
                       "arrayIndexOffset_": -1,
                       "convertedPrimitiveFields_": Object {},
@@ -2106,7 +2106,6 @@ exports[`ArtifactDetails Renders with a Model Artifact and updates the page titl
   <div
     className="page"
   >
-<<<<<<< HEAD
     <div
       className=""
     >
@@ -2582,66 +2581,6 @@ exports[`ArtifactDetails Renders with a Model Artifact and updates the page titl
               1,
               1,
               "gs://my-bucket/mnist",
-=======
-    <ResourceInfo
-      resource={
-        Object {
-          "array": Array [
-            1,
-            1,
-            "gs://my-bucket/mnist",
-            Array [
-              Array [
-                "__ALL_META__",
-                Array [
-                  undefined,
-                  undefined,
-                  "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
-                ],
-              ],
-              Array [
-                "create_time",
-                Array [
-                  undefined,
-                  undefined,
-                  "2019-06-12T01:21:48.259263Z",
-                ],
-              ],
-              Array [
-                "description",
-                Array [
-                  undefined,
-                  undefined,
-                  "A really great model",
-                ],
-              ],
-              Array [
-                "name",
-                Array [
-                  undefined,
-                  undefined,
-                  "test model",
-                ],
-              ],
-              Array [
-                "version",
-                Array [
-                  undefined,
-                  undefined,
-                  "v1",
-                ],
-              ],
-            ],
-            Array [
-              Array [
-                "__kf_run__",
-                Array [
-                  undefined,
-                  undefined,
-                  "1",
-                ],
-              ],
->>>>>>> Use ml_metadata.Artifact in ModelInfo
               Array [
                 Array [
                   "__ALL_META__",
@@ -2690,11 +2629,7 @@ exports[`ArtifactDetails Renders with a Model Artifact and updates the page titl
                   Array [
                     undefined,
                     undefined,
-<<<<<<< HEAD
                     "1",
-=======
-                    "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
->>>>>>> Use ml_metadata.Artifact in ModelInfo
                   ],
                 ],
                 Array [
@@ -2762,13 +2697,13 @@ exports[`ArtifactDetails Renders with a Model Artifact and updates the page titl
                     "value": Array [
                       undefined,
                       undefined,
-                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                      "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                     ],
                     "valueWrapper": Object {
                       "array": Array [
                         undefined,
                         undefined,
-                        "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"))",
+                        "{\\"hyperparameters\\": {\\"early_stop\\": true, \\"layers\\": [10, 3, 1], \\"learning_rate\\": 0.5}, \\"model_type\\": \\"neural network\\", \\"training_framework\\": {\\"name\\": \\"tensorflow\\", \\"version\\": \\"v1.0\\"}}",
                       ],
                       "arrayIndexOffset_": -1,
                       "convertedPrimitiveFields_": Object {},
