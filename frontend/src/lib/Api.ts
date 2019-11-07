@@ -1,4 +1,3 @@
-import {MetadataServiceApi} from '../apis/service';
 import {
   MetadataStoreServiceClient,
   ServiceError, UnaryResponse
@@ -76,27 +75,15 @@ const metadataServicePromiseClient = {
 export class Api {
 
   private static instance: Api;
-  private metadataServiceApi: MetadataServiceApi;
 
   /**
    * Factory function to return an Api instance.
    */
   public static getInstance(): Api {
     if (!Api.instance) {
-      const location = window.location;
-      let path = `${location.protocol}//${location.host}${location.pathname}`;
-      if (path.endsWith('/')) path = path.slice(0, path.length - 1);
-      Api.instance = new Api(path);
+      Api.instance = new Api();
     }
     return Api.instance;
-  }
-
-  private constructor(basePath: string) {
-    this.metadataServiceApi = new MetadataServiceApi({basePath});
-  }
-
-  get metadataService(): MetadataServiceApi {
-    return this.metadataServiceApi;
   }
 
   get metadataStoreService() {
