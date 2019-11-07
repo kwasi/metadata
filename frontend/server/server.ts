@@ -23,10 +23,6 @@ const BASEPATH = '/metadata';
 
 /** All configurable environment variables can be found here. */
 const {
-  /** API service will listen to this host */
-  METADATA_SERVICE_SERVICE_HOST = 'localhost',
-  /** API service will listen to this port */
-  METADATA_SERVICE_SERVICE_PORT = '8080',
   /** Envoy service will listen to this host */
   METADATA_ENVOY_SERVICE_SERVICE_HOST = 'localhost',
   /** Envoy service will listen to this port */
@@ -52,11 +48,8 @@ Usage: node server.js <static-dir> [port].
 const staticDir = path.resolve(process.argv[2]);
 
 const port = process.argv[3] || 3000;
-const apiServerAddress = `http://${METADATA_SERVICE_SERVICE_HOST}:${METADATA_SERVICE_SERVICE_PORT}`;
 
 const envoyServiceAddress = `http://${METADATA_ENVOY_SERVICE_SERVICE_HOST}:${METADATA_ENVOY_SERVICE_SERVICE_PORT}`
-
-const v1alpha1Prefix = 'api/v1alpha1';
 
 const clusterNameHandler = async (req, res) => {
   const response = await fetch(
@@ -88,24 +81,6 @@ app.all('/ml_metadata.*', proxy({
     console.log('Metadata proxied request: ', (proxyReq as any).path);
   },
   target: envoyServiceAddress,
-}));
-
-app.all('/' + v1alpha1Prefix + '/*', proxy({
-  changeOrigin: true,
-  onProxyReq: proxyReq => {
-    console.log('Proxied request: ', (proxyReq as any).path);
-  },
-  target: apiServerAddress,
-}));
-
-app.all(BASEPATH  + '/' + v1alpha1Prefix + '/*', proxy({
-  changeOrigin: true,
-  onProxyReq: proxyReq => {
-    console.log('Proxied request: ', (proxyReq as any).path);
-  },
-  pathRewrite: (path) =>
-    path.startsWith(BASEPATH) ? path.substr(BASEPATH.length, path.length) : path,
-  target: apiServerAddress,
 }));
 
 app.use(BASEPATH, StaticHandler(staticDir));
