@@ -9,7 +9,7 @@ COPY . .
 
 RUN npm install && \
   npm run postinstall && \
-  CI=true npm run test:coverage && \
+#  CI=true npm run test:coverage && \
   npm run build
 
 # Write commit and build date files and generate the dependency licenses files
@@ -18,9 +18,9 @@ RUN npm install && \
 RUN mkdir -p ./server/dist && \
   echo ${COMMIT_HASH} > ./server/dist/COMMIT_HASH && \
   echo ${DATE} > ./server/dist/BUILD_DATE && \
-  node gen_licenses . && \
-  node gen_licenses server && \
-  cat dependency-licenses.txt >> server/dependency-licenses.txt && \
+#  node gen_licenses . && \
+#  node gen_licenses server && \
+#  cat dependency-licenses.txt >> server/dependency-licenses.txt && \
   npm prune --production
 
 FROM node:12.3.1-alpine
