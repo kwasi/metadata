@@ -32,7 +32,8 @@ curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/artifact_types
 curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/artifact_types/kubeflow.org/alpha/model
 
 # Update the specified model type.
-curl -X PATCH -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/artifact_types -d @update_model_type.json
+# DO NOT DO THIS ON 0.7 - your server will get in a bad sate
+# curl -X PATCH -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/artifact_types -d @update_model_type.json
 curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/artifact_types/kubeflow.org/alpha/model
 
 # Add a model artifact
@@ -54,5 +55,6 @@ curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/execution_types
 curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/execution_types/kubeflow.org/alpha/execution
 
 # Update the the specified execution type.
-curl -X PATCH -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/execution_types -d @update_execution_type.json
+# DO NOT DO THIS ON 0.7 - your server will get in a bad sate
+# curl -X PATCH -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/execution_types -d @update_execution_type.json
 curl -H "ContentType: application/json" $HOST:$PORT/api/v1alpha1/execution_types/kubeflow.org/alpha/execution
