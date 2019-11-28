@@ -27,6 +27,7 @@
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.9.0",
     "cross-env": "^6.0.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -34,6 +35,9 @@
     "license-checker": "^25.0.1",
     "react-router-test-context": "^0.1.0",
     "ts-protoc-gen": "^0.12.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
     "typescript": "^3.4.5"
   },
   "scripts": {
@@ -51,7 +55,26 @@
     "test:coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2019,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint/tslint"
+    ],
+    "rules": {
+      "@typescript-eslint/tslint/config": [
+        "warn",
+        {
+          "lintFile": "./tslint.json"
+        }
+      ]
+    }
   },
   "eslintIgnore": [
     "src/__mocks__",
